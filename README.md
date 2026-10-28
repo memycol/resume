@@ -1,31 +1,22 @@
 # resumé
 
-The tool for building resumés. Free, no account, no watermark.
+**The tool for building resumés.** Free, no account, no watermark.
 
-resumé is a resume builder that lives in one HTML file. Open it, pick a look, fill in what you need, and download a print-ready PDF. Nothing is uploaded and nothing is tracked, because there's no server.
+🔗 **Live site:** [add your URL here]
 
-## Features
+resumé is a website for making a clean, professional resume in minutes. Pick a template, fill in what you need, and download a print-ready PDF. There are no sign-ups and no paywalls, and your details stay in your browser.
 
-- **Nine templates:** Midnight, Aurora, Noir, Studio, Classic, Modern, Minimal, Bold and Elegant
-- **Checklist-style editor:** about you, summary, experience, education, skills and languages. Skip anything, and empty sections never show up on the resume.
-- **Live A4 preview** that updates as you type
-- **Custom accent colour** for any template
-- **One-click PDF** through the browser's print dialog
-- **Private by design:** your details stay in your browser
-- **No dependencies:** plain HTML, CSS and JavaScript, with no build step
+## What you can do
 
-## Usage
+- Choose from nine templates: Midnight, Aurora, Noir, Studio, Classic, Modern, Minimal, Bold and Elegant
+- Work through a simple checklist: about you, summary, experience, education, skills and languages
+- Skip any section, and empty sections never appear on your resume
+- See a live A4 preview as you type
+- Set any accent colour you like
+- Download a PDF in one click
 
-1. Download or clone the repo.
-2. Open `index.html` in any modern browser.
-3. Build your resume and click **Download PDF**.
+## Privacy
 
-## Tech
-
-Vanilla HTML, CSS and JavaScript in a single file. Fonts (Wix Madefor Display and Tiro Kannada) load from Google Fonts.
-
-## License
-
-Add your license here, for example MIT.
+Everything happens in your browser. Your information is never uploaded or stored on a server, and there's no account to create.
 
 © 2026 resumé. All rights reserved.
