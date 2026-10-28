@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>resumé — make your own resume, instantly</title>
-<link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;500;600;700;800&family=Tiro+Kannada:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Tiro+Kannada:ital@0;1&display=swap" rel="stylesheet">
 <style>
 :root{color-scheme:dark;--bg:#080D0B;--fg:#F1F8F4;--mute:rgba(241,248,244,.62);--acc:#34D3A0;--ar:52,211,160;--acc2:#F2C94C;--line:rgba(255,255,255,.12);--card:#111A16;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*:before,*:after{box-sizing:inherit}
-body{margin:0;color:var(--fg);font-family:"Wix Madefor Display",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(56rem 36rem at 88% -8%,rgba(14,159,119,.22),transparent 62%),radial-gradient(40rem 30rem at -8% 105%,rgba(var(--ar),.09),transparent 60%),#080D0B;background-attachment:fixed}
+body{margin:0;color:var(--fg);font-family:"Manrope",system-ui,sans-serif;-webkit-font-smoothing:antialiased;background:radial-gradient(56rem 36rem at 88% -8%,rgba(14,159,119,.22),transparent 62%),radial-gradient(40rem 30rem at -8% 105%,rgba(var(--ar),.09),transparent 60%),#080D0B;background-attachment:fixed}
 ::selection{background:var(--acc);color:#fff}
 ::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-thumb{background:rgba(var(--ar),.5);border-radius:9px}::-webkit-scrollbar-track{background:transparent}
 button{font:inherit;color:inherit;cursor:pointer}
@@ -106,7 +106,7 @@ textarea{resize:vertical;min-height:4.4rem}
 .foot{text-align:center;color:var(--mute);font-size:.75rem;margin:1.8rem 0 0}
 .mbar{display:none}
 /* resume page + templates */
-.pg{width:794px;min-height:1123px;background:#fff;color:#222;font:13px/1.5 "Wix Madefor Display",system-ui,sans-serif;transform-origin:0 0;box-shadow:0 20px 70px rgba(0,0,0,.6);-webkit-print-color-adjust:exact;print-color-adjust:exact;--a:#0E9F77}
+.pg{width:794px;min-height:1123px;background:#fff;color:#222;font:13px/1.5 "Manrope",system-ui,sans-serif;transform-origin:0 0;box-shadow:0 20px 70px rgba(0,0,0,.6);-webkit-print-color-adjust:exact;print-color-adjust:exact;--a:#0E9F77}
 .pg h1{margin:0;font-size:34px;line-height:1.1;letter-spacing:-.02em}
 .pg .tt{font-size:15px;margin-top:4px;color:#555}
 .pg h3{margin:18px 0 8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--a)}
@@ -316,15 +316,19 @@ body{background:#0F0F0E}
 .big2{font-size:clamp(3.2rem,9.5vw,8.4rem);letter-spacing:-.055em;margin:0 0 2.2rem}
 .hl .tiny{margin-top:1.4rem}
 
-body{font-family:"Wix Madefor Display",system-ui,sans-serif}
+body{font-family:"Manrope",system-ui,sans-serif}
 .big2{letter-spacing:-.05em;font-weight:700}
 .sec h2,.fc2 h2{letter-spacing:-.045em;font-weight:700}
 .stats b{letter-spacing:-.05em;font-weight:700}
 .btn{font-weight:600;border-radius:10px}
 
-.logo .gr,.big2 .gr{font-family:"Tiro Kannada",Georgia,serif;font-style:italic;font-weight:400}
-.logo .gr{font-size:1.15em}
-.big2 .gr{font-size:1.05em;letter-spacing:-.02em}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+.cx{display:inline-block;will-change:transform}
+.mq>div{animation:none}
+.spb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--acc);box-shadow:0 0 10px rgba(52,211,160,.8);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
+
+html{scrollbar-width:none}html::-webkit-scrollbar{width:0;height:0;display:none}
+.rail{scrollbar-width:none}.rail::-webkit-scrollbar{display:none}
 </style>
 </head>
 <body data-page="home" data-v="edit">
@@ -352,6 +356,9 @@ body{font-family:"Wix Madefor Display",system-ui,sans-serif}
 </div>
 <div class="mbar"><button data-v="edit" class="on">Edit</button><button data-v="prev">Preview</button></div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -448,6 +455,45 @@ home();
 const hw=$('hw');
 hw.addEventListener('pointermove',e=>{const r=hw.getBoundingClientRect();hw.style.setProperty('--mx',(e.clientX-r.left)+'px');hw.style.setProperty('--my',(e.clientY-r.top)+'px')});
 }catch(_){}})();
+(()=>{try{
+if(typeof gsap==='undefined'||typeof ScrollTrigger==='undefined'){return}
+gsap.registerPlugin(ScrollTrigger);
+let lenis=null;
+if(typeof Lenis!=='undefined'){lenis=new Lenis({duration:1,smoothWheel:true,easing:t=>t===1?1:1-Math.pow(2,-10*t)});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(500,33)}
+const edp=$('ed');if(edp)edp.setAttribute('data-lenis-prevent','');
+function split(el){el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim());const out=[];
+const walk=n=>[...n.childNodes].forEach(c=>{if(c.nodeType===3){const f=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){f.appendChild(document.createTextNode(' '));return}const wd=document.createElement('span');wd.setAttribute('aria-hidden','true');wd.style.cssText='display:inline-block;white-space:nowrap';[...w].forEach(ch=>{const s=document.createElement('span');s.className='cx';s.textContent=ch;wd.appendChild(s);out.push(s)});f.appendChild(wd)});c.replaceWith(f)}else if(c.nodeType===1&&c.tagName!=='BR')walk(c)});
+walk(el);return out}
+const FLY={opacity:0,x:'6rem',filter:'blur(.6rem)',scale:1.2},IN={opacity:1,x:0,filter:'blur(0rem)',scale:1,duration:1.5,stagger:.04,ease:'back.out(1.2)'};
+/* scroll progress line */
+const sp=document.createElement('div');sp.className='spb';$('home').appendChild(sp);
+gsap.to(sp,{scaleX:1,ease:'none',scrollTrigger:{trigger:document.documentElement,start:'top top',end:'bottom bottom',scrub:true}});
+/* hero: chars fly in on load, drift away on scroll */
+const hc=split(document.querySelector('.big2'));
+gsap.set(hc,FLY);gsap.set('.hl .cta,.hl .tiny',{opacity:0,y:24});gsap.set('#home .top',{opacity:0,y:-16});
+const intro=()=>{gsap.to(hc,IN);gsap.to('#home .top',{opacity:1,y:0,duration:1,delay:.3});gsap.to('.hl .cta,.hl .tiny',{opacity:1,y:0,duration:1,stagger:.15,delay:.9,ease:'power3.out'})};
+(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(intro);
+/* marquee speeds up with scroll velocity */
+const mt=gsap.to('.mq>div',{xPercent:-50,duration:30,ease:'none',repeat:-1});
+if(lenis)lenis.on('scroll',({velocity})=>mt.timeScale(1+Math.min(Math.abs(velocity)*.5,5)));
+gsap.ticker.add(()=>{const t=mt.timeScale();if(t!==1)mt.timeScale(t+(1-t)*.06)});
+/* section headings: chars fly in from the right */
+document.querySelectorAll('#tpls h2,.fc2 h2').forEach(h=>{const c=split(h);gsap.set(c,FLY);ScrollTrigger.create({trigger:h,start:'top 85%',once:true,onEnter:()=>gsap.to(c,IN)})});
+gsap.set('.kick',{opacity:0,y:20});ScrollTrigger.create({trigger:'.kick',start:'top 90%',once:true,onEnter:()=>gsap.to('.kick',{opacity:1,y:0,duration:1,ease:'power3.out'})});
+/* templates */
+const tcs=gsap.utils.toArray('.tc');gsap.set(tcs,{opacity:0,y:80,scale:.92});
+ScrollTrigger.create({trigger:'#rail',start:'top 88%',once:true,onEnter:()=>gsap.to(tcs,{opacity:1,y:0,scale:1,duration:1.1,stagger:.08,ease:'power3.out'})});
+/* stats rise with the scroll */
+gsap.fromTo('.stats>div',{y:120,opacity:0,scale:.9},{y:0,opacity:1,scale:1,stagger:.15,ease:'none',scrollTrigger:{trigger:'.stats',start:'top 92%',end:'top 40%',scrub:true}});
+/* closing call to action */
+gsap.set('.fc2 .btn',{opacity:0,scale:.8,y:30});
+ScrollTrigger.create({trigger:'.fc2 .btn',start:'top 95%',once:true,onEnter:()=>gsap.to('.fc2 .btn',{opacity:1,scale:1,y:0,duration:1.1,ease:'back.out(1.4)'})});
+gsap.set('.ft',{opacity:0});ScrollTrigger.create({trigger:'.ft',start:'top 100%',once:true,onEnter:()=>gsap.to('.ft',{opacity:1,duration:1})});
+/* smooth scroll only on the landing page */
+const sync=first=>{const on=document.body.dataset.page==='home';if(lenis)on?lenis.start():lenis.stop();if(on&&!first)setTimeout(()=>{lenis&&lenis.scrollTo(0,{immediate:true});ScrollTrigger.refresh()},60)};
+new MutationObserver(()=>sync(false)).observe(document.body,{attributes:true,attributeFilter:['data-page']});sync(true);
+addEventListener('load',()=>ScrollTrigger.refresh());
+}catch(e){}})();
 </script>
 </body>
 </html>
