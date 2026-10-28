@@ -2,7 +2,7 @@
 
 **The tool for building resumés.** Free, no account, no watermark.
 
-🔗 **Live site:** [add your URL here]
+🔗 **Live site:** (https://memycol.github.io/resume)
 
 resumé is a website for making a clean, professional resume in minutes. Pick a template, fill in what you need, and download a print-ready PDF. There are no sign-ups and no paywalls, and your details stay in your browser.
 
