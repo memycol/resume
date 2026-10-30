@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
 <title>resumé — make your own resume, instantly</title>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Tiro+Kannada:ital@0;1&display=swap" rel="stylesheet">
 <style>
@@ -322,13 +324,48 @@ body{font-family:"Manrope",system-ui,sans-serif}
 .stats b{letter-spacing:-.05em;font-weight:700}
 .btn{font-weight:600;border-radius:10px}
 
-html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:auto!important}
 .cx{display:inline-block;will-change:transform}
 .mq>div{animation:none}
 .spb{position:fixed;top:0;left:0;right:0;height:2px;background:var(--acc);box-shadow:0 0 10px rgba(52,211,160,.8);transform:scaleX(0);transform-origin:0 50%;z-index:50;pointer-events:none}
 
 html{scrollbar-width:none}html::-webkit-scrollbar{width:0;height:0;display:none}
 .rail{scrollbar-width:none}.rail::-webkit-scrollbar{display:none}
+
+/* ===== mobile/desktop scroll + preview fixes ===== */
+html,body{overflow-x:hidden}
+@media(max-width:900px){
+html{scroll-behavior:auto!important}
+body{background-attachment:scroll}
+.app{min-height:0}
+.stage{overflow:visible;min-height:calc(100svh - 62px)}
+body[data-v=prev] .stage{display:block}
+body[data-v=prev] .mbar,body[data-v=edit] .mbar{display:flex}
+}
+/* ===== privacy notice + legal ===== */
+.nsv{display:flex;gap:.7rem;align-items:flex-start;margin:0 0 1.1rem;padding:.8rem 1rem;border-radius:.9rem;border:1px solid rgba(242,201,76,.45);background:rgba(242,201,76,.08);font-size:.82rem;line-height:1.5;color:var(--fg)}
+.nsv b{color:#F2C94C}
+.pv{padding:4rem 6%;max-width:60rem;margin:0 auto;text-align:center}
+.pv h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:0 0 1rem;letter-spacing:-.03em}
+.pv p{color:var(--mute);line-height:1.7;margin:.6rem auto;max-width:44rem}
+.pv p b{color:var(--fg)}
+.lgl{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.2rem;margin:.8rem 0 0}
+.lgl button{background:none;border:0;padding:.3rem 0;color:var(--mute);font-size:.8rem;text-decoration:underline;text-underline-offset:3px}
+.lgl button:hover{color:var(--fg)}
+.foot .lgl{margin-top:.5rem}
+.lg-m{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-start;justify-content:center;background:rgba(0,0,0,.72);overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:calc(1rem + env(safe-area-inset-top,0px)) 1rem calc(1rem + env(safe-area-inset-bottom,0px))}
+.lg-m[hidden]{display:none}
+.lg-b{width:100%;max-width:46rem;margin:auto;background:#121917;color:var(--fg);border:1px solid var(--line);border-radius:1.2rem;box-shadow:0 30px 80px rgba(0,0,0,.7)}
+.lg-h{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 1.2rem;background:#121917;border-bottom:1px solid var(--line);border-radius:1.2rem 1.2rem 0 0}
+.lg-h strong{font-size:1rem}
+.lg-h button{border:1px solid var(--line);background:rgba(255,255,255,.05);border-radius:99px;padding:.45rem 1rem;font-size:.82rem;font-weight:600}
+.lg-c{padding:1.2rem 1.4rem 1.8rem;font-size:.9rem;line-height:1.7;color:rgba(241,248,244,.85)}
+.lg-c h3{font-size:1rem;margin:1.5rem 0 .4rem;color:var(--fg)}
+.lg-c p,.lg-c ul{margin:.5rem 0}.lg-c ul{padding-left:1.2rem}.lg-c li{margin:.25rem 0}
+.lg-c .hl2{padding:.8rem 1rem;border-radius:.8rem;background:rgba(52,211,160,.1);border:1px solid rgba(52,211,160,.4)}
+.lg-c small{color:var(--mute)}
+.lg-c article[hidden]{display:none}
+@media print{.lg-m,.nsv,.pv,.lgl{display:none!important}}
 </style>
 </head>
 <body data-page="home" data-v="edit">
@@ -338,24 +375,77 @@ html{scrollbar-width:none}html::-webkit-scrollbar{width:0;height:0;display:none}
  <div class="hl">
   <h1 class="big2">The tool for building <span class="gr">resumés.</span></h1>
   <div class="cta"><button class="btn p lg" data-go="start" data-demo-cta>Start building <span>→</span></button></div>
-  <p class="tiny">Nothing leaves your browser.</p>
+  <p class="tiny">Nothing is saved. Nothing is sent. Nothing leaves your browser.</p>
  </div>
  </div></section>
 <div class="mq"><div><span>Free</span><span>No account</span><span>No watermark</span><span>Private</span><span>Print-ready PDF</span><span>Nine templates</span><span>Free</span><span>No account</span><span>No watermark</span><span>Private</span><span>Print-ready PDF</span><span>Nine templates</span></div></div>
 <section class="sec" id="tpls"><p class="kick">Templates</p><h2>Nine looks. Tap one to start.</h2><div class="rail" id="rail"></div></section>
 <section class="sec"><div class="stats"><div><b>$0</b><span>Forever free</span></div><div><b>0</b><span>Accounts needed</span></div><div><b>1</b><span>Click to PDF</span></div></div></section>
 <section class="fc2"><h2>Build yours. <span class="gr">Now.</span></h2><button class="btn p lg" data-go="start">Start building <span>→</span></button></section>
-<footer class="ft">© 2026 resumé. All rights reserved.</footer>
+<section class="pv" id="privacy-sec"><h2>Your data is <span class="gr">never saved.</span></h2>
+<p><b>We don’t store your resume — not on a server, not in your browser.</b> There are no accounts, no cookies, no local storage, no analytics and no uploads. Everything you type lives only in this tab’s memory and is gone the moment you refresh or close the page.</p>
+<p>Because nothing is saved, copying this page or its address to another device or browser will <b>not</b> bring your details with you. <b>Download your PDF before you leave</b> — we cannot recover anything.</p>
+<div class="lgl"><button data-legal="privacy">Privacy Policy</button><button data-legal="terms">Terms of Use</button><button data-legal="disclaimer">Disclaimer</button></div></section>
+<footer class="ft">© 2026 resumé. All rights reserved.<div class="lgl"><button data-legal="privacy">Privacy Policy</button><button data-legal="terms">Terms of Use</button><button data-legal="disclaimer">Disclaimer</button></div></footer>
 </div>
 
 <div id="build">
 <header class="top"><button class="logo" data-go="home" aria-label="Back to home">resum<span class="serif gr">é</span></button><div><button class="btn p" id="dl">Download PDF</button></div></header>
 <div class="app">
   <div class="ed" id="ed"></div>
-  <div class="stage"><div class="meta"><span id="tn">Template</span><span id="pc">1 page · A4</span></div><div class="sh" id="sh"><div class="pg" id="pg"></div></div><p class="foot">Private by design — your details never leave this browser.</p></div>
+  <div class="stage"><div class="meta"><span id="tn">Template</span><span id="pc">1 page · A4</span></div><div class="sh" id="sh"><div class="pg" id="pg"></div></div><p class="foot">Private by design — nothing is saved or sent. Your details exist only in this tab and vanish on refresh or close.<span class="lgl"><button data-legal="privacy">Privacy</button><button data-legal="terms">Terms</button><button data-legal="disclaimer">Disclaimer</button></span></p></div>
 </div>
 <div class="mbar"><button data-v="edit" class="on">Edit</button><button data-v="prev">Preview</button></div>
 </div>
+<div class="lg-m" id="lg" hidden role="dialog" aria-modal="true" aria-labelledby="lgt" data-lenis-prevent><div class="lg-b"><div class="lg-h"><strong id="lgt">Legal</strong><button id="lgx" type="button">Close ✕</button></div><div class="lg-c">
+
+<article data-doc="privacy" data-title="Privacy Policy" hidden>
+<p><small>Last updated: 30 October 2026</small></p>
+<div class="hl2"><b>Short version:</b> We do not save, store, collect, log or transmit anything you type into this tool. Your resume exists only in your device’s temporary memory while the page is open, and is erased when you refresh or close it.</div>
+<h3>1. About this tool</h3><p>“resumé” is a <b>free tool, not a service</b>. It is a simple page that runs in your own browser to format a resume. There are no accounts, no customers, no subscriptions and no support or hosting of your data.</p>
+<h3>2. What we collect</h3><p><b>Nothing.</b> We have no servers receiving your resume content, no user accounts, no database, no cookies, no analytics or advertising trackers, and no tracking pixels. We cannot see, access, recover or share your resume, photo or any details you enter.</p>
+<h3>3. How your information is handled</h3>
+<ul><li>Text and photos you enter are processed <b>entirely on your device</b>, in the page’s temporary memory only.</li>
+<li>Nothing is written to cookies, localStorage, sessionStorage, IndexedDB or any other browser storage. Any data from earlier versions of this tool is deleted automatically when the page loads.</li>
+<li>Your uploaded photo is resized on your device and is never uploaded anywhere.</li>
+<li>The page is configured with a security policy that blocks it from sending data to any website.</li>
+<li>Refreshing, closing the tab, or opening this page on another device or browser starts with a blank resume. Copying the page, its address or its file to another device does not copy your data.</li></ul>
+<h3>4. Your PDF</h3><p>“Download PDF” uses your browser’s built-in print function. Your browser or operating system creates and saves the file on your device. We never receive it. Once downloaded, it is your responsibility to store and share it safely.</p>
+<h3>5. Third-party resources</h3><p>To display the page, your browser loads fonts and code libraries from third parties (Google Fonts, cdnjs / Cloudflare, and jsDelivr). When it does, those providers may receive standard technical information such as your IP address, browser type and the page address, under their own privacy policies. They do not receive anything you type into the resume.</p>
+<h3>6. Things outside our control</h3><p>Your browser, its extensions, autofill or password managers, keyboard or voice tools, screen-recording software, and your device or network may record what you type. We turn off autofill on our fields where possible, but we cannot control these. Use a private/incognito window and a trusted device for sensitive details, and avoid including highly sensitive information (such as government ID numbers) in a resume.</p>
+<h3>7. Children</h3><p>This tool is not directed at children under 13 (or under 16 where local law requires). We do not knowingly collect information from anyone, including children.</p>
+<h3>8. Your rights</h3><p>Because we hold no personal information about you, there is nothing for us to access, correct, export or delete. We do not collect personal information, so applicable privacy laws (including the Australian Privacy Act 1988, the GDPR/UK GDPR and the CCPA/CPRA) have nothing to apply to here.</p>
+<h3>9. Changes</h3><p>We may update this policy. The “last updated” date above will change when we do.</p>
+</article>
+
+<article data-doc="terms" data-title="Terms of Use" hidden>
+<p><small>Last updated: 30 October 2026</small></p>
+<p>By using resumé (the “Tool”) you agree to these Terms. If you do not agree, do not use the Tool.</p>
+<h3>1. A free tool, not a service</h3><div class="hl2"><b>resumé is a FREE TOOL, not a service.</b> We do not provide you with any ongoing service, account, storage, support, or any commitment of availability. It is offered free of charge, for convenience only, and may be changed, suspended or removed at any time without notice.</div>
+<h3>2. No data is saved — your responsibility</h3><div class="hl2">We do not store your resume. If you refresh, close the page, lose your connection, or your device or browser crashes, <b>everything you entered is permanently lost</b>. Download your PDF before leaving. We cannot restore lost work.</div>
+<h3>3. Your content</h3><p>You own everything you enter. You confirm that you have the right to use it, that it is accurate and not misleading, and that it does not infringe anyone’s rights, break any law, or include personal information of others without permission (for example, referees’ details). We claim no rights over your content, as we never receive it.</p>
+<h3>4. Acceptable use</h3><p>You agree not to use the Tool to create unlawful, fraudulent, defamatory or deceptive content (including false qualifications or work history); to attempt to disrupt, scrape, reverse-engineer or overload it; or to use it in a way that breaks any law.</p>
+<h3>5. Our intellectual property</h3><p>The Tool’s design, code, templates and branding are owned by us or our licensors and are provided for your personal use. You may use resumes you create for any lawful purpose, including job applications. You may not copy, resell or redistribute the Tool itself without permission.</p>
+<h3>6. No guarantees</h3><p>The Tool is provided <b>“as is” and “as available”</b> without warranties of any kind, express or implied, including fitness for a particular purpose, accuracy, uninterrupted operation, or compatibility with every device, browser, printer or applicant tracking system (ATS). Layout and PDF output may vary between browsers and devices; always review your PDF before sending it. We do not guarantee any job, interview or other outcome.</p>
+<h3>7. Limitation of liability</h3><p>To the maximum extent permitted by law, we are not liable for any indirect, incidental, special, consequential or punitive loss, or any loss of data, opportunity, income or reputation, arising from your use of (or inability to use) the Tool. Our total liability for any claim is limited to AUD $0, as the Tool is free. Nothing in these Terms excludes or limits any right or liability that cannot lawfully be excluded, including consumer guarantees under the Australian Consumer Law, where they apply.</p>
+<h3>8. Indemnity</h3><p>To the extent permitted by law, you agree to indemnify us against claims, losses and costs arising from the content you create or your breach of these Terms.</p>
+<h3>9. Third-party services</h3><p>The Tool loads resources from third parties (see the Privacy Policy). We are not responsible for them.</p>
+<h3>10. Governing law</h3><p>These Terms are governed by the laws of Queensland, Australia, and the courts of Queensland have non-exclusive jurisdiction, unless mandatory local consumer law says otherwise.</p>
+<h3>11. Changes</h3><p>We may update these Terms; continued use means you accept the updated Terms.</p>
+</article>
+
+<article data-doc="disclaimer" data-title="Disclaimer" hidden>
+<p><small>Last updated: 30 October 2026</small></p>
+<ul><li><b>Not professional advice.</b> Templates, sample text and suggestions are for general convenience only and are not career, recruitment, legal or HR advice.</li>
+<li><b>Sample content is fictional.</b> The “Fill with sample” data is made up and must not be submitted as your own details.</li>
+<li><b>Accuracy is yours to check.</b> You are solely responsible for the truth, spelling, grammar and completeness of your resume. Misrepresenting qualifications or experience can have serious consequences.</li>
+<li><b>No guarantee of results.</b> We make no promise about interviews, job offers, or how any employer or ATS reads your file.</li>
+<li><b>Output may vary.</b> PDFs are produced by your own browser and printer settings. Check page breaks, fonts, colours and margins before sending.</li>
+<li><b>Nothing is saved.</b> We cannot recover lost work. Download your PDF before leaving the page.</li>
+<li><b>Third-party names.</b> Any brand names or fonts mentioned belong to their respective owners; no affiliation or endorsement is implied.</li></ul>
+</article>
+
+</div></div></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -369,8 +459,9 @@ const DK=['midnight','aurora','noir'];
 const COL=['#0E9F77','#0f766e','#c2410c','#1d4ed8','#be123c','#111111'];
 const blank=()=>({p:{name:'',title:'',email:'',phone:'',loc:'',web:''},photo:'',summary:'',exp:[],edu:[],skills:'',langs:'',links:'',xt:'',xl:'',tpl:'midnight',acc:'#0E9F77',skip:{},cur:'look'});
 let S=blank();
-try{const s=localStorage.getItem('resume-s');if(s)S=Object.assign(blank(),JSON.parse(s))}catch(e){}
-const save=()=>{try{localStorage.setItem('resume-s',JSON.stringify(S))}catch(e){}};
+/* PRIVACY: nothing is ever stored. Wipe any data saved by older versions. */
+try{localStorage.removeItem('resume-s')}catch(e){}try{sessionStorage.removeItem('resume-s')}catch(e){}
+const save=()=>{}; /* intentionally empty: data is never persisted */
 function thumb(t){const a=S.acc;return{classic:`background:linear-gradient(#fff 0 25%,#fff 0),repeating-linear-gradient(#fff 0 4px,#ddd 4px 6px)`,modern:`background:linear-gradient(${a} 0 35%,#fff 35%)`,minimal:`background:repeating-linear-gradient(#fff 0 5px,#e6e6e6 5px 7px)`,bold:`background:linear-gradient(#111 0 38%,${a} 38% 46%,#fff 46%)`,elegant:`background:linear-gradient(#fff 0 45%,${a} 45% 49%,#fff 49%),repeating-linear-gradient(#fff 0 5px,#eee 5px 7px)`,midnight:`background:radial-gradient(circle at 85% 0,${a},transparent 65%),#080D0B`,aurora:`background:linear-gradient(160deg,#080D0B 50%,${a})`,noir:`background:linear-gradient(90deg,#12201B 35%,#080D0B 35%)`,studio:`background:linear-gradient(#f8f5ec 0 40%,${a} 40% 46%,#f8f5ec 46%)`}[t]}
 function R(){
   const p=S.p,pg=$('pg');
@@ -385,8 +476,8 @@ function R(){
   pg.innerHTML=(head||side||main)?`${head}<div class="cols"><main>${main}</main><aside>${side}</aside></div>`:`<div class="empty"><h2 style="margin:0 0 .4rem;color:#999;font-weight:600">Your resume appears here</h2>Start typing on the left — or hit <b>Sample</b> to see a template in action.</div>`;
   fit();
 }
-function fit(){const st=document.querySelector('.stage'),pg=$('pg'),sh=$('sh');if(matchMedia('print').matches)return;const sc=Math.min(1,(st.clientWidth-(innerWidth<900?16:50))/794);pg.style.transform=`scale(${sc})`;sh.style.width=794*sc+'px';sh.style.height=pg.offsetHeight*sc+'px';const n=Math.max(1,Math.ceil((pg.offsetHeight-8)/1123));$('pc').textContent=n+(n>1?' pages':' page')+' · A4';$('pc').style.color=n>1?'#ffb27a':'';$('tn').textContent=(T.find(t=>t[0]==S.tpl)||[0,''])[1]+' template'}
-addEventListener('resize',fit);
+function fit(){const st=document.querySelector('.stage'),pg=$('pg'),sh=$('sh');if(matchMedia('print').matches||!st.clientWidth)return;const sc=Math.min(1,(st.clientWidth-(innerWidth<900?16:50))/794);pg.style.transform=`scale(${sc})`;sh.style.width=794*sc+'px';sh.style.height=pg.offsetHeight*sc+'px';const n=Math.max(1,Math.ceil((pg.offsetHeight-8)/1123));$('pc').textContent=n+(n>1?' pages':' page')+' · A4';$('pc').style.color=n>1?'#ffb27a':'';$('tn').textContent=(T.find(t=>t[0]==S.tpl)||[0,''])[1]+' template'}
+addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));
 const STEPS=[['look','Choose a look','Template and colour'],['about','About you','Name, title and contact details'],['summary','Summary','A short intro'],['exp','Experience','Jobs, volunteering, anything'],['edu','Education','Schools and courses'],['skills','Skills','What you’re good at'],['langs','Languages','Languages you speak'],['links','Links','Portfolio, LinkedIn, …'],['xt','Something else','Certificates, awards, anything']];
 const CK=STEPS.slice(1).map(s=>s[0]);
 const CS={skills:['Type a skill, press Enter',['Customer service','Teamwork','Communication','Time management','Problem solving','Microsoft Office','Attention to detail','Adaptability']],langs:['Type a language, press Enter',['English','Spanish','French','Mandarin','Vietnamese','Arabic','Hindi','German']]};
@@ -413,11 +504,11 @@ function body(id){
 }
 function buildEd(){
   const e=$('ed'),y=e.scrollTop,tn=(T.find(t=>t[0]==S.tpl)||[0,''])[1];
-  e.innerHTML=`<h2 class="hd">Let’s build your <span class="serif gr">resumé</span></h2><p class="lead">Work down the checklist. Skip anything you like — it simply won’t appear.</p><div class="prog"><i id="pgb"></i></div><div class="pm" id="pn"></div>`
+  e.innerHTML=`<h2 class="hd">Let’s build your <span class="serif gr">resumé</span></h2><div class="nsv" role="note"><span aria-hidden="true">⚠️</span><span><b>Nothing is saved.</b> Your details stay only in this tab and are erased when you refresh or close it. Download your PDF before leaving.</span></div><p class="lead">Work down the checklist. Skip anything you like — it simply won’t appear.</p><div class="prog"><i id="pgb"></i></div><div class="pm" id="pn"></div>`
   +STEPS.map(([id,t,h])=>`<div class="st ${S.cur==id?'open':''}" data-s="${id}"><button class="sth" data-o="${id}" aria-expanded="${S.cur==id}"><span class="ck"></span><span class="tt2">${t}<small>${id=='look'?tn+' · tap to change':h}</small></span><span class="chev"></span></button>${S.cur==id?`<div class="stb">${body(id)}<div class="nav2">${id=='look'?'<span></span>':`<button class="skipb" data-skip="${id}">Skip</button>`}<button class="nextb" data-next="${id}">${id=='xt'?'Finish':'Next'} →</button></div></div>`:''}</div>`).join('')
   +(S.cur=='done'?`<div class="fin"><h3>Looking great.</h3><p>Your resume is ready. Download it as a PDF, or reopen any step to tweak it.</p><button class="btn p" id="dl2">Download PDF</button></div>`:'')
   +`<div class="mini"><button data-smp="1">Fill with sample</button><button data-clr="1">Start over</button></div>`;
-  e.scrollTop=y;stat();
+  e.querySelectorAll('input,textarea').forEach(x=>{x.setAttribute('autocomplete','off');x.setAttribute('autocorrect','off')});e.scrollTop=y;stat();
 }
 function stat(){let n=0;document.querySelectorAll('.st').forEach(el=>{const id=el.dataset.s;if(id=='look'){el.classList.add('done');return}const d=isDone(id),k=!d&&!!S.skip[id];el.classList.toggle('done',d);el.classList.toggle('skip',k);if(d||k)n++});
   const b=$('pgb');if(b){b.style.width=n/CK.length*100+'%';$('pn').textContent=n+' of '+CK.length+' steps done'}}
@@ -440,7 +531,8 @@ $('ed').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)re
   else if(b.id=='dl2')dl()});
 const dl=()=>{if(S.p.name)document.title=S.p.name+' — Resume';window.print()};
 $('dl').onclick=dl;
-document.querySelectorAll('.mbar button').forEach(b=>b.onclick=()=>{document.body.dataset.v=b.dataset.v;document.querySelectorAll('.mbar button').forEach(x=>x.classList.toggle('on',x===b));scrollTo(0,0);fit()});
+const toTop=()=>{try{window.scrollTo({top:0,left:0,behavior:'instant'})}catch(_){window.scrollTo(0,0)}document.documentElement.scrollTop=0;document.body.scrollTop=0};
+document.querySelectorAll('.mbar button').forEach(b=>b.onclick=()=>{document.body.dataset.v=b.dataset.v;document.querySelectorAll('.mbar button').forEach(x=>x.classList.toggle('on',x===b));toTop();requestAnimationFrame(()=>{fit();toTop();setTimeout(()=>{fit();toTop()},60)})});
 /* landing flow */
 const hasData=()=>CK.some(isDone);
 function home(){document.body.dataset.page='home';const c=hasData();document.querySelectorAll('[data-go=start]').forEach(b=>b.firstChild.textContent=c?'Continue your resume ':'Start building ');scrollTo(0,0)}
@@ -451,6 +543,16 @@ $('rail').innerHTML=T.map(t=>`<button class="tc" data-pick="${t[0]}"><i class="t
 const io='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.12}):null;
 document.querySelectorAll('.rv').forEach(el=>io?io.observe(el):el.classList.add('in'));
 home();
+/* legal modal */
+(()=>{const m=$('lg'),t=$('lgt');let last=null;
+const open=k=>{last=document.activeElement;m.hidden=false;m.scrollTop=0;m.querySelectorAll('article').forEach(a=>{const on=a.dataset.doc==k;a.hidden=!on;if(on)t.textContent=a.dataset.title});$('lgx').focus()};
+const close=()=>{m.hidden=true;if(last&&last.focus)last.focus()};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-legal]');if(b){open(b.dataset.legal);return}if(e.target===m||e.target.id==='lgx')close()});
+addEventListener('keydown',e=>{if(e.key==='Escape'&&!m.hidden)close()});
+})();
+/* privacy: never restore old state from back/forward cache; warn before leaving */
+addEventListener('pageshow',e=>{if(e.persisted)location.reload()});
+addEventListener('beforeunload',e=>{if(typeof hasData==='function'&&hasData()){e.preventDefault();e.returnValue=''}});
 (()=>{try{
 const hw=$('hw');
 hw.addEventListener('pointermove',e=>{const r=hw.getBoundingClientRect();hw.style.setProperty('--mx',(e.clientX-r.left)+'px');hw.style.setProperty('--my',(e.clientY-r.top)+'px')});
